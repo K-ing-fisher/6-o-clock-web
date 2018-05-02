@@ -19,7 +19,8 @@
 <script>
 import toastr from 'toastr'
 import axios from 'axios'
-import { VALIDATION_CHECK, errorHandler } from '../../common'
+import { errorHandler } from '../../common'
+import { VALIDATION_CHECK } from '../../config'
 
 export default {
   name: 'signup',
@@ -68,8 +69,8 @@ export default {
             name: this.name
           })
           .then( response => {
+            // 상태코드에 따라 수정해야됨.
             if (!response) { return toastr.warning('잠시후 다시 시도해주세요!') }
-            setToken(response.data.accessToken);
             toastr.success('회원가입에 성공했습니다!');
 
             this.$router.push('/success');
